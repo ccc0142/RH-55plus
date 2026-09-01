@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0">
+<title>Oak Ridges Community Centre · 活动指南</title>
+<style>
+  :root{
+    --bg:#F1EFEA;
+    --card:#FFFFFF;
+    --day-head-bg:#F5F3ED;
+    --ink:#241F1A;
+    --ink-soft:#6B655C;
+    --jade:#1F4A40;
+    --jade-soft:#E4E9E4;
+    --gold:#8C6229;
+    --gold-soft:#F1E7D6;
+    --violet:#553A5E;
+    --violet-soft:#EAE4EC;
+    --crimson:#A13A2E;
+    --crimson-soft:#F3E3DF;
+    --line:#E3DFD6;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+    font-size:18px;
+    line-height:1.65;
+    padding-bottom:60px;
+  }
+  a{color:var(--jade);}
+  header.top{
+    background:var(--card);
+    color:var(--ink);
+    padding:26px 20px 20px;
+    text-align:center;
+    border-bottom:3px solid var(--gold);
+  }
+  .brand{
+    margin:0 0 10px;
+    line-height:1.1;
+  }
+  .brand-main{
+    display:block;
+    font-size:26px;
+    font-weight:800;
+    letter-spacing:.3px;
+  }
+  .brand-sub{
+    display:block;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:2.5px;
+    color:var(--gold);
+    margin-top:4px;
+  }
+  header.top .en-name{
+    font-size:13px;
+    color:var(--ink-soft);
+    opacity:1;
+    margin-bottom:12px;
+    white-space:nowrap;
+    letter-spacing:.3px;
+  }
+  .info-row{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px 20px;
+    font-size:14px;
+  }
+  .info-row span{opacity:1; white-space:nowrap; color:var(--ink-soft);}
+
+  /* category tabs */
+  .tabs{
+    display:flex;
+    max-width:640px;
+    margin:16px auto 0;
+    padding:0 16px;
+    gap:8px;
+  }
+  .tab-btn{
+    flex:1;
+    padding:12px 6px;
+    border-radius:12px;
+    border:2px solid var(--jade);
+    background:#fff;
+    color:var(--jade);
+    font-size:14px;
+    font-weight:700;
+    font-family:inherit;
+    text-align:center;
+    cursor:pointer;
+  }
+  .tab-btn.active{
+    background:var(--jade);
+    color:#fff;
+  }
+
+  main{
+    max-width:640px;
+    margin:0 auto;
+    padding:22px 18px 0;
+  }
+  .card{
+    background:var(--card);
+    border-radius:14px;
+    padding:22px 20px;
+    margin-bottom:22px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+  }
+  .card h2{
+    margin:0 0 10px;
+    font-size:20px;
+  }
+  .notes-card{
+    background:#EFEBE2;
+    box-shadow:none;
+    border-left:4px solid var(--gold);
+  }
+  .notes-card h2{
+    font-size:16px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:.5px;
+  }
+  .notes-card p, .notes-card .legend{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.55;
+  }
+
+  .day-card{
+    background:var(--card);
+    border-radius:16px;
+    margin-bottom:20px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+    overflow:hidden;
+  }
+  .day-head{
+    display:flex;
+    align-items:center;
+    padding:12px 20px;
+    background:var(--day-head-bg);
+    border-left:3px solid var(--jade);
+  }
+  .day-title .zh{
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:1px;
+    color:var(--ink-soft);
+  }
+  .activity-list{padding:8px 20px 14px;}
+  .activity{
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .activity:last-child{border-bottom:none;}
+  .desc{
+    margin-top:10px;
+    padding:12px 14px;
+    background:var(--jade-soft);
+    border-radius:10px;
+    font-size:15px;
+    color:var(--ink);
+    line-height:1.5;
+  }
+  .activity-left{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .name-time-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:10px;
+  }
+  .time-value{
+    font-size:16px;
+    font-weight:600;
+    color:var(--ink-soft);
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+  .dot{
+    width:11px;height:11px;border-radius:50%;
+    margin-top:7px;
+    flex-shrink:0;
+  }
+  .dot.sport{background:#2E7D5B;}
+  .dot.game{background:#C97A2B;}
+  .dot.hobby{background:#8B4FA0;}
+  .activity-name{
+    flex:1 1 auto;
+    min-width:0;
+  }
+  .activity-name .zh{font-size:16px;font-weight:600; display:block; min-width:0;}
+  .activity-name .en{
+    display:block;
+    font-size:14px;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .activity-name .detail-tag{
+    display:block;
+    font-size:13px;
+    color:var(--jade);
+    font-weight:600;
+    margin-top:4px;
+  }
+  .activity-name .activity-link{
+    font-size:14px;
+    font-weight:700;
+    color:var(--jade);
+    text-decoration:none;
+  }
+  .meta-line{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:6px 10px;
+    margin-top:4px;
+  }
+  .meta-line .note{
+    font-size:14px;
+    color:var(--crimson);
+    white-space:nowrap;
+  }
+  .meta-line .fee{
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .badge-booking{
+    display:inline-block;
+    background:var(--crimson-soft);
+    color:var(--crimson);
+    font-size:12px;
+    padding:2px 8px;
+    border-radius:6px;
+  }
+  .badge-new{
+    display:inline-block;
+    background:var(--gold-soft);
+    color:var(--gold);
+    font-size:12px;
+    font-weight:700;
+    padding:2px 8px;
+    border-radius:6px;
+  }
+  .badge-full{
+    display:inline-block;
+    background:#E7E4DC;
+    color:var(--ink-soft);
+    font-size:12px;
+    padding:2px 8px;
+    border-radius:6px;
+  }
+  .empty-day{
+    padding:16px 18px;
+    color:var(--ink-soft);
+    font-size:16px;
+  }
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    font-size:14px;
+    color:var(--ink-soft);
+    margin-top:4px;
+  }
+  .legend span{display:flex;align-items:center;gap:6px;}
+  .legend .dot{margin-top:0;}
+  .closure-box{
+    background:var(--crimson-soft);
+    color:var(--crimson);
+    border-radius:12px;
+    padding:12px 16px;
+    font-size:16px;
+    margin-bottom:18px;
+  }
+  .cta{
+    display:inline-block;
+    background:var(--jade);
+    color:#fff !important;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:10px;
+    font-size:17px;
+    margin-top:6px;
+  }
+  footer{
+    max-width:640px;
+    margin:0 auto;
+    padding:10px 20px 30px;
+    color:var(--ink-soft);
+    font-size:14px;
+  }
+  footer .updated{
+    font-weight:600;
+    color:var(--ink);
+  }
+  #loading, #error{
+    text-align:center;
+    padding:40px 20px;
+    color:var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <span class="brand-main">Oak Ridges</span>
+    <span class="brand-sub">COMMUNITY CENTRE</span>
+  </div>
+  <div class="en-name">列治文山 · Oak Ridges 社区中心 · 活动指南</div>
+  <div class="info-row">
+    <span>📍 12895 Bayview Avenue, Richmond Hill</span>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab-btn" data-cat="55plus" onclick="switchTab('55plus')">55+ 免预约<br>活动</button>
+  <button class="tab-btn" data-cat="adult" onclick="switchTab('adult')">成人全年龄活动</button>
+  <button class="tab-btn" data-cat="registered" onclick="switchTab('registered')">55+ 报名课程</button>
+</div>
+
+<main>
+
+  <div id="loading">正在加载活动安排…</div>
+  <div id="error" style="display:none;">
+    暂时无法加载活动时间表数据，请直接查看官网：<br>
+    <a class="cta" href="https://www.richmondhill.ca/en/things-to-do/55-drop-in-programs.aspx" target="_blank" rel="noopener">官网：55+活动</a>
+    &nbsp;
+    <a class="cta" href="https://www.richmondhill.ca/en/things-to-do/fitness-class-schedule-and-fees.aspx" target="_blank" rel="noopener">官网：全年龄健身课</a>
+  </div>
+
+  <div id="content" style="display:none;">
+
+    <div id="closures"></div>
+    <div id="days"></div>
+
+    <section class="card" id="facility-fees-card" style="display:none;">
+      <h2 id="facility-fees-title"></h2>
+      <table style="width:100%; border-collapse:collapse; font-size:16px;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--line);">
+            <th style="text-align:left; padding:8px 4px;">年龄</th>
+            <th style="text-align:right; padding:8px 4px;">健身房</th>
+            <th style="text-align:right; padding:8px 4px;">室内跑道</th>
+          </tr>
+        </thead>
+        <tbody id="facility-fees-rows"></tbody>
+      </table>
+      <p id="facility-fees-note" style="color:var(--ink-soft); font-size:14px; margin-top:10px;"></p>
+    </section>
+
+    <section class="card notes-card">
+      <h2 id="membership-title">费用与说明</h2>
+      <p id="membership-note"></p>
+      <div class="legend" style="margin-top:12px;">
+        <span><i class="dot sport"></i>运动健身</span>
+        <span><i class="dot game"></i>棋牌游戏</span>
+        <span><i class="dot hobby"></i>兴趣爱好</span>
+      </div>
+      <p style="margin-top:12px;" id="tab-specific-note"></p>
+    </section>
+
+  </div>
+
+</main>
+
+<footer>
+  <p><span class="updated" id="updated-line">数据更新中…</span></p>
+  <p>本页内容由官网信息翻译整理而来，供参考。正式时间、费用与场地安排请以 Richmond Hill 官网或电话 905-773-4630 为准，活动前建议先致电确认。</p>
+  <p><a href="https://www.richmondhill.ca/en/things-to-do/Oak-Ridges-Community-Centre.aspx" target="_blank" rel="noopener">官网：Oak Ridges Community Centre 主页</a></p>
+</footer>
+
+<script>
+const DAY_ORDER = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+const DAY_LABEL = {
+  Sun:{ch:"日", en:"Sunday"},
+  Mon:{ch:"一", en:"Monday"},
+  Tue:{ch:"二", en:"Tuesday"},
+  Wed:{ch:"三", en:"Wednesday"},
+  Thu:{ch:"四", en:"Thursday"},
+  Fri:{ch:"五", en:"Friday"},
+  Sat:{ch:"六", en:"Saturday"}
+};
+
+let DATA = null;
+let currentTab = "55plus";
+
+fetch('./data.json?_=' + Date.now())
+  .then(r => { if(!r.ok) throw new Error('no data'); return r.json(); })
+  .then(data => {
+    DATA = data;
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    switchTab('55plus');
+  })
+  .catch(() => {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('error').style.display = 'block';
+  });
+
+function switchTab(tab){
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(el => {
+    el.classList.toggle('active', el.dataset.cat === tab);
+  });
+  render();
+}
+
+function toggleDesc(id){
+  const el = document.getElementById(id);
+  if(el) el.style.display = (el.style.display === 'none') ? 'block' : 'none';
+}
+
+function render(){
+  if(!DATA) return;
+  const cat = DATA.categories[currentTab];
+
+  document.getElementById('membership-title').textContent =
+    currentTab === '55plus' ? '55+ 会员须知' :
+    currentTab === 'adult' ? '成人全年龄课费用' : '报名须知';
+  document.getElementById('membership-note').textContent = cat.membership_note || '';
+  document.getElementById('tab-specific-note').textContent =
+    currentTab === '55plus'
+      ? '以上是 Oak Ridges 社区中心的每周固定 55+ 免预约活动。签到需在开始前15分钟到前台，出示会员卡并交费。除此之外，中心还不定期举办郊游、讲座、手工坊等特别活动，内容常有变动，建议直接联系中心或查看官网 55+ 特别活动页了解最新安排。'
+      : currentTab === 'adult'
+      ? '以上是 Oak Ridges 社区中心面向所有年龄成人开放的健身课（Body Blast、Boot Camp、CycleFit 等），不需要 55+ 会员，现场付费即可参加。'
+      : '以上是 Oak Ridges 社区中心 2026 年秋季的 55+ 报名制课程，跟前两个标签的免预约活动不同，需要提前在官网系统报名并付费才能占到名额。"已满"表示这一期已经报满，"New"表示这是新开的课程。名额和开课情况每季都会变，建议报名前先跟中心确认最新状态。';
+
+  // facility fees (adult tab only)
+  const feesCard = document.getElementById('facility-fees-card');
+  if(cat.facility_fees){
+    feesCard.style.display = 'block';
+    document.getElementById('facility-fees-title').textContent = cat.facility_fees.title_zh;
+    document.getElementById('facility-fees-note').textContent = cat.facility_fees.note_zh || '';
+    const rowsEl = document.getElementById('facility-fees-rows');
+    rowsEl.innerHTML = '';
+    cat.facility_fees.rows.forEach(r => {
+      const tr = document.createElement('tr');
+      tr.style.borderBottom = '1px solid var(--line)';
+      tr.innerHTML = `<td style="padding:8px 4px;">${r.age}</td><td style="text-align:right; padding:8px 4px;">${r.studio}</td><td style="text-align:right; padding:8px 4px;">${r.track}</td>`;
+      rowsEl.appendChild(tr);
+    });
+  } else {
+    feesCard.style.display = 'none';
+  }
+
+  // closures
+  const closuresEl = document.getElementById('closures');
+  closuresEl.innerHTML = '';
+  if(cat.closures && cat.closures.length){
+    const box = document.createElement('div');
+    box.className = 'closure-box';
+    box.innerHTML = '⚠ ' + cat.closures.join('<br>⚠ ');
+    closuresEl.appendChild(box);
+  }
+
+  // day cards
+  const daysEl = document.getElementById('days');
+  daysEl.innerHTML = '';
+  DAY_ORDER.forEach(dayKey => {
+    const label = DAY_LABEL[dayKey];
+    let items = (cat.days && cat.days[dayKey]) || [];
+
+    const card = document.createElement('div');
+    card.className = 'day-card';
+
+    const head = document.createElement('div');
+    head.className = 'day-head';
+    head.innerHTML = `
+      <div class="day-title"><div class="zh">星期${label.ch}</div></div>
+    `;
+    card.appendChild(head);
+
+    const list = document.createElement('div');
+    list.className = 'activity-list';
+    if(items.length === 0){
+      list.innerHTML = '<div class="empty-day">这天没有符合条件的活动</div>';
+    } else {
+      items.forEach((it, idx) => {
+        const row = document.createElement('div');
+        row.className = 'activity';
+        const desc = (cat.class_descriptions && cat.class_descriptions[it.en]) || '';
+        const rowId = `desc-${dayKey}-${idx}`;
+        row.innerHTML = `
+          <div class="activity-left" ${desc ? `onclick="toggleDesc('${rowId}')" style="cursor:pointer;"` : ''}>
+            <span class="dot ${it.category}"></span>
+            <div class="activity-name">
+              <div class="name-time-row">
+                <span class="zh">${it.zh}</span>
+                <span class="time-value">${it.time}</span>
+              </div>
+              ${it.en_display ? `<span class="en">${it.en_display}</span>` : ''}
+              ${desc ? `<span class="detail-tag">介绍 ›</span>` : ''}
+              ${it.fee ? `<div class="meta-line"><span class="fee">${it.fee}</span></div>` : ''}
+              ${it.date_range ? `<div class="meta-line"><span class="fee">${it.date_range}</span></div>` : ''}
+              ${it.note ? `<div class="meta-line"><span class="note">${it.note}</span></div>` : ''}
+              ${(it.need_booking || it.link || it.full || it.is_new) ? `<div class="meta-line">
+                ${it.is_new ? `<span class="badge-new">New</span>` : ''}
+                ${it.full ? `<span class="badge-full">已满</span>` : (it.need_booking ? `<span class="badge-booking">${it.badge_label || '需预约'}</span>` : '')}
+                ${(it.link && !it.full) ? `<a class="activity-link" href="${it.link}" onclick="event.stopPropagation()">${it.link_label || '去预约 ›'}</a>` : ''}
+              </div>` : ''}
+            </div>
+          </div>
+          ${desc ? `<div class="desc" id="${rowId}" style="display:none;">${desc}</div>` : ''}
+        `;
+        list.appendChild(row);
+      });
+    }
+    card.appendChild(list);
+    daysEl.appendChild(card);
+  });
+
+  document.getElementById('updated-line').textContent =
+    `${cat.period_label || ''}，最后更新于 ${cat.updated}`;
+}
+</script>
+
+</body>
+</html>

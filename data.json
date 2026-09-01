@@ -1,0 +1,821 @@
+{
+  "categories": {
+    "55plus": {
+      "label_zh": "55+ 专属活动",
+      "subtitle_zh": "需要 Adults 55+ 会员",
+      "updated": "2026-09-01",
+      "period_label": "2026年9月排班（秋季课表，9月8日起生效）",
+      "membership_note": "需先办理 Adults 55+ 会员：居民 $35/年，非居民 $63/年。之后免预约活动每次 $1.30，匹克球每次 $3.15。",
+      "closures": [
+        "9月7日（劳动节）：全部55+免预约活动场地休息",
+        "9月4日（周五）羽毛球、9月6日（周日）羽毛球、9月20日（周日）乒乓球：当次临时取消"
+      ],
+      "days": {
+        "Sun": [
+          {
+            "en": "Table Tennis",
+            "zh": "乒乓球",
+            "category": "sport",
+            "time": "13:00 – 15:00",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          },
+          {
+            "en": "Badminton",
+            "zh": "羽毛球",
+            "category": "sport",
+            "time": "16:30 – 18:30",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          }
+        ],
+        "Mon": [
+          {
+            "en": "Crafts",
+            "zh": "手工艺",
+            "category": "hobby",
+            "time": "10:00 – 12:00",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          },
+          {
+            "en": "Chess",
+            "zh": "象棋",
+            "category": "game",
+            "time": "13:00 – 16:00",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          },
+          {
+            "en": "Table Tennis",
+            "zh": "乒乓球",
+            "category": "sport",
+            "time": "13:15 – 15:15",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          },
+          {
+            "en": "Badminton",
+            "zh": "羽毛球",
+            "category": "sport",
+            "time": "13:30 – 15:30",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          }
+        ],
+        "Tue": [
+          {
+            "en": "Pickleball",
+            "zh": "匹克球（初学者）",
+            "category": "sport",
+            "time": "13:00 – 15:00",
+            "fee": "$3.15",
+            "need_booking": true,
+            "badge_label": "需预约",
+            "note": "居民每周一早8点开放预约下周场次",
+            "en_display": "",
+            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&activity_select_param=2&activity_keyword=pickleball&viewMode=list&locale=en-US",
+            "link_label": "去预约 ›"
+          },
+          {
+            "en": "Chinese Mahjong",
+            "zh": "麻将",
+            "category": "game",
+            "time": "14:30 – 16:30",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          }
+        ],
+        "Wed": [
+          {
+            "en": "Table Tennis",
+            "zh": "乒乓球",
+            "category": "sport",
+            "time": "08:30 – 10:00",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          },
+          {
+            "en": "Euchre",
+            "zh": "尤克纸牌",
+            "category": "game",
+            "time": "10:00 – 13:00",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": "Euchre"
+          },
+          {
+            "en": "Table Tennis",
+            "zh": "乒乓球",
+            "category": "sport",
+            "time": "10:30 – 12:30",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          }
+        ],
+        "Thu": [
+          {
+            "en": "Table Tennis",
+            "zh": "乒乓球",
+            "category": "sport",
+            "time": "08:30 – 10:30",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          },
+          {
+            "en": "Table Tennis",
+            "zh": "乒乓球",
+            "category": "sport",
+            "time": "11:00 – 13:00",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          },
+          {
+            "en": "Knitting",
+            "zh": "编织",
+            "category": "hobby",
+            "time": "13:00 – 16:00",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          }
+        ],
+        "Fri": [
+          {
+            "en": "Badminton",
+            "zh": "羽毛球",
+            "category": "sport",
+            "time": "10:30 – 12:30",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          },
+          {
+            "en": "Pickleball",
+            "zh": "匹克球（初学者）",
+            "category": "sport",
+            "time": "13:00 – 15:00",
+            "fee": "$3.15",
+            "need_booking": true,
+            "badge_label": "需预约",
+            "note": "居民每周一早8点开放预约下周场次",
+            "en_display": "",
+            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&activity_select_param=2&activity_keyword=pickleball&viewMode=list&locale=en-US",
+            "link_label": "去预约 ›"
+          }
+        ],
+        "Sat": [
+          {
+            "en": "Table Tennis",
+            "zh": "乒乓球",
+            "category": "sport",
+            "time": "09:00 – 11:00",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          },
+          {
+            "en": "Badminton",
+            "zh": "羽毛球",
+            "category": "sport",
+            "time": "17:15 – 19:15",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          },
+          {
+            "en": "Table Tennis",
+            "zh": "乒乓球",
+            "category": "sport",
+            "time": "19:00 – 21:00",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": "",
+            "en_display": ""
+          }
+        ]
+      }
+    },
+    "adult": {
+      "label_zh": "成人全年龄活动",
+      "subtitle_zh": "任何年龄成人均可参加，不需要 55+ 会员",
+      "updated": "2026-09-01",
+      "period_label": "2026年秋季课表（9月7日 – 2027年1月3日）",
+      "membership_note": "现场付费即可参加：$8.20/次（14-17岁 或 65岁以上），$11.75/次（18-64岁）。常来的话购买健身会员更划算，详见官网 Memberships 页。",
+      "closures": [
+        "9月7日（劳动节）、10月12日（感恩节）：暂停",
+        "12月24日16:00后、12月25/26/31日16:00后、1月1日：暂停"
+      ],
+      "facility_fees": {
+        "title_zh": "健身房 Fitness Studio / 室内跑道 单次收费",
+        "note_zh": "现场付费，按次收费；常去的话官网也有健身会员，价格需另外查询",
+        "rows": [
+          {
+            "age": "14-17 岁",
+            "studio": "$8.20",
+            "track": "$3.30"
+          },
+          {
+            "age": "18-64 岁",
+            "studio": "$11.75",
+            "track": "$4.65"
+          },
+          {
+            "age": "65 岁以上",
+            "studio": "$8.20",
+            "track": "$3.25"
+          }
+        ]
+      },
+      "class_descriptions": {
+        "Body Blast": "全身综合训练课，用不同器材和动作组合，全面锻炼身体各部位肌肉，中高强度。",
+        "Boot Camp": "高强度燃脂训练，结合肌力和心肺训练，适合想挑战体能、快速见效的人，强度较大。",
+        "CycleFit": "室内动感单车课，模拟平路骑行、爬坡和冲刺，全程心肺训练，适合喜欢有氧运动的人。",
+        "Dancercise": "跟着音乐做有氧舞蹈，不需要任何舞蹈基础，边跳边燃脂塑形，气氛比较轻松。",
+        "Interval Insanity": "高强度间歇训练，心肺、核心、负重动作交替进行，追求快速见效，强度较大。",
+        "Sculpt & Tone": "借助器械做阻力训练，专注雕塑和收紧全身线条，强度适中。",
+        "Piloga": "普拉提与瑜伽结合的课程，动作连贯柔和，锻炼力量和柔软度，同时帮助放松，强度较温和。",
+        "Abs, Butt & Thighs": "专门针对腹部、臀部和大腿的塑形训练，强化核心肌群，适合各年龄和体能水平。"
+      },
+      "days": {
+        "Sun": [
+          {
+            "en": "Body Blast",
+            "zh": "全身塑形",
+            "en_display": "Body Blast",
+            "category": "sport",
+            "time": "09:15 – 10:15",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          }
+        ],
+        "Mon": [
+          {
+            "en": "Dancercise",
+            "zh": "健身舞蹈",
+            "en_display": "Dancercise",
+            "category": "sport",
+            "time": "09:30 – 10:30",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "Body Blast",
+            "zh": "全身塑形",
+            "en_display": "Body Blast",
+            "category": "sport",
+            "time": "18:15 – 19:15",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "Interval Insanity",
+            "zh": "高强度间歇训练",
+            "en_display": "Interval Insanity",
+            "category": "sport",
+            "time": "19:30 – 20:30",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          }
+        ],
+        "Tue": [
+          {
+            "en": "Boot Camp",
+            "zh": "体能训练营",
+            "en_display": "Boot Camp",
+            "category": "sport",
+            "time": "09:30 – 10:30",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "CycleFit",
+            "zh": "室内单车",
+            "en_display": "CycleFit",
+            "category": "sport",
+            "time": "18:00 – 18:50",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "Abs, Butt & Thighs",
+            "zh": "腹部臀腿塑形",
+            "en_display": "Abs, Butt & Thighs",
+            "category": "sport",
+            "time": "19:00 – 20:00",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          }
+        ],
+        "Wed": [
+          {
+            "en": "CycleFit",
+            "zh": "室内单车",
+            "en_display": "CycleFit",
+            "category": "sport",
+            "time": "08:30 – 09:15",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "Interval Insanity",
+            "zh": "高强度间歇训练",
+            "en_display": "Interval Insanity",
+            "category": "sport",
+            "time": "09:30 – 10:30",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "Sculpt & Tone",
+            "zh": "雕塑塑形",
+            "en_display": "Sculpt & Tone",
+            "category": "sport",
+            "time": "18:45 – 19:45",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "Dancercise",
+            "zh": "健身舞蹈",
+            "en_display": "Dancercise",
+            "category": "sport",
+            "time": "20:00 – 21:00",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          }
+        ],
+        "Thu": [
+          {
+            "en": "Body Blast",
+            "zh": "全身塑形",
+            "en_display": "Body Blast",
+            "category": "sport",
+            "time": "08:15 – 09:15",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "Body Blast",
+            "zh": "全身塑形",
+            "en_display": "Body Blast",
+            "category": "sport",
+            "time": "09:30 – 10:30",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "CycleFit",
+            "zh": "室内单车",
+            "en_display": "CycleFit",
+            "category": "sport",
+            "time": "18:00 – 18:50",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "Boot Camp",
+            "zh": "体能训练营",
+            "en_display": "Boot Camp",
+            "category": "sport",
+            "time": "19:30 – 20:30",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          }
+        ],
+        "Fri": [
+          {
+            "en": "CycleFit",
+            "zh": "室内单车",
+            "en_display": "CycleFit",
+            "category": "sport",
+            "time": "09:30 – 10:30",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "Body Blast",
+            "zh": "全身塑形",
+            "en_display": "Body Blast",
+            "category": "sport",
+            "time": "19:15 – 20:15",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          }
+        ],
+        "Sat": [
+          {
+            "en": "Sculpt & Tone",
+            "zh": "雕塑塑形",
+            "en_display": "Sculpt & Tone",
+            "category": "sport",
+            "time": "08:15 – 09:15",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "Piloga",
+            "zh": "普拉提瑜伽",
+            "en_display": "Piloga",
+            "category": "sport",
+            "time": "09:30 – 10:30",
+            "fee": "$8.20 / $11.75",
+            "need_booking": false,
+            "note": ""
+          }
+        ]
+      }
+    },
+    "registered": {
+      "label_zh": "55+ 报名课程",
+      "subtitle_zh": "55+ 专属，需提前网上报名，名额有限",
+      "updated": "2026-08-27",
+      "period_label": "2026年秋季课程（9月-12月，各课程起止日期不同）",
+      "membership_note": "秋季报名课程，价格已含税。每个班名额有限，满员会显示“已满”（此时报名按钮会消失）；未满员的会显示“去报名”按钮，点击会跳转到官网报名系统，需要登录你的会员账号完成报名和付款，具体名额以系统实时显示为准。",
+      "closures": [],
+      "days": {
+        "Mon": [
+          {
+            "en": "Zumba Gold",
+            "zh": "尊巴健身（银发版）",
+            "en_display": "Zumba Gold",
+            "category": "sport",
+            "time": "10:00 – 11:00",
+            "date_range": "9月28日–12月14日",
+            "fee": "$81.90",
+            "openings": 25,
+            "full": false,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&days_of_week=0000000&activity_select_param=2&center_ids=66&date_after=2026-09-06&activity_other_category_ids=7&activity_keyword=new&viewMode=list",
+            "link_label": "去报名系统查找 ›"
+          },
+          {
+            "en": "Balanced Body Workout",
+            "zh": "身体平衡训练",
+            "en_display": "Balanced Body Workout",
+            "category": "sport",
+            "time": "12:00 – 13:00",
+            "date_range": "9月28日–12月7日",
+            "fee": "$66.38",
+            "openings": 0,
+            "full": true,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "",
+            "link_label": ""
+          },
+          {
+            "en": "Chair Yoga",
+            "zh": "椅子瑜伽",
+            "en_display": "Chair Yoga",
+            "category": "sport",
+            "time": "12:45 – 13:45",
+            "date_range": "9月28日–12月7日",
+            "fee": "$64.48",
+            "openings": 0,
+            "full": true,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "",
+            "link_label": ""
+          },
+          {
+            "en": "Gentle Strength & Stability",
+            "zh": "温和力量与稳定训练",
+            "en_display": "Gentle Strength & Stability",
+            "category": "sport",
+            "time": "13:15 – 14:15",
+            "date_range": "9月28日–12月7日",
+            "fee": "$66.38",
+            "openings": 5,
+            "full": false,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&days_of_week=0000000&activity_select_param=2&center_ids=66&date_after=2026-09-06&activity_other_category_ids=7&activity_keyword=new&viewMode=list",
+            "link_label": "去报名系统查找 ›"
+          },
+          {
+            "en": "Piloga",
+            "zh": "普拉提瑜伽",
+            "en_display": "Piloga",
+            "category": "sport",
+            "time": "14:00 – 15:00",
+            "date_range": "9月28日–12月7日",
+            "fee": "$64.48",
+            "openings": 0,
+            "full": true,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "",
+            "link_label": ""
+          },
+          {
+            "en": "Silver Spinners",
+            "zh": "银发单车",
+            "en_display": "Silver Spinners",
+            "category": "sport",
+            "time": "14:45 – 15:45",
+            "date_range": "9月28日–12月7日",
+            "fee": "$66.38",
+            "openings": 0,
+            "full": true,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "",
+            "link_label": ""
+          }
+        ],
+        "Tue": [
+          {
+            "en": "Osteoporosis Fitness",
+            "zh": "骨质疏松健身",
+            "en_display": "Osteoporosis Fitness",
+            "category": "sport",
+            "time": "10:45 – 11:45",
+            "date_range": "10月6日–12月8日",
+            "fee": "$75.62",
+            "openings": 0,
+            "full": true,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "",
+            "link_label": ""
+          },
+          {
+            "en": "Piloga",
+            "zh": "普拉提瑜伽",
+            "en_display": "Piloga",
+            "category": "sport",
+            "time": "12:00 – 13:00",
+            "date_range": "9月29日–12月1日",
+            "fee": "$64.48",
+            "openings": 0,
+            "full": true,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "",
+            "link_label": ""
+          },
+          {
+            "en": "Restorative Yoga",
+            "zh": "舒缓瑜伽",
+            "en_display": "Restorative Yoga",
+            "category": "sport",
+            "time": "14:00 – 15:15",
+            "date_range": "9月29日–12月8日",
+            "fee": "$80.60",
+            "openings": 11,
+            "full": false,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&days_of_week=0000000&activity_select_param=2&center_ids=66&date_after=2026-09-06&activity_other_category_ids=7&activity_keyword=new&viewMode=list",
+            "link_label": "去报名系统查找 ›"
+          }
+        ],
+        "Wed": [
+          {
+            "en": "Gentle Strength & Stability",
+            "zh": "温和力量与稳定训练",
+            "en_display": "Gentle Strength & Stability",
+            "category": "sport",
+            "time": "10:45 – 11:45",
+            "date_range": "9月30日–12月2日",
+            "fee": "$66.38",
+            "openings": 5,
+            "full": false,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&days_of_week=0000000&activity_select_param=2&center_ids=66&date_after=2026-09-06&activity_other_category_ids=7&activity_keyword=new&viewMode=list",
+            "link_label": "去报名系统查找 ›"
+          },
+          {
+            "en": "Balanced Body Workout",
+            "zh": "身体平衡训练",
+            "en_display": "Balanced Body Workout",
+            "category": "sport",
+            "time": "12:00 – 13:00",
+            "date_range": "9月30日–12月2日",
+            "fee": "$66.38",
+            "openings": 0,
+            "full": true,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "",
+            "link_label": ""
+          }
+        ],
+        "Thu": [
+          {
+            "en": "Yoga - Level 1",
+            "zh": "瑜伽初级",
+            "en_display": "Yoga - Level 1",
+            "category": "sport",
+            "time": "10:45 – 11:45",
+            "date_range": "10月1日–12月3日",
+            "fee": "$64.48",
+            "openings": 7,
+            "full": false,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&days_of_week=0000000&activity_select_param=2&center_ids=66&date_after=2026-09-06&activity_other_category_ids=7&activity_keyword=new&viewMode=list",
+            "link_label": "去报名系统查找 ›"
+          },
+          {
+            "en": "Lower Back & You",
+            "zh": "腰背护理训练",
+            "en_display": "Lower Back & You",
+            "category": "sport",
+            "time": "13:00 – 14:00",
+            "date_range": "10月8日–11月26日",
+            "fee": "$53.10",
+            "openings": 7,
+            "full": false,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&days_of_week=0000000&activity_select_param=2&center_ids=66&date_after=2026-09-06&activity_other_category_ids=7&activity_keyword=new&viewMode=list",
+            "link_label": "去报名系统查找 ›"
+          },
+          {
+            "en": "Yoga - Level 1",
+            "zh": "瑜伽初级",
+            "en_display": "Yoga - Level 1",
+            "category": "sport",
+            "time": "13:00 – 14:00",
+            "date_range": "10月1日–12月3日",
+            "fee": "$64.48",
+            "openings": 5,
+            "full": false,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&days_of_week=0000000&activity_select_param=2&center_ids=66&date_after=2026-09-06&activity_other_category_ids=7&activity_keyword=new&viewMode=list",
+            "link_label": "去报名系统查找 ›"
+          },
+          {
+            "en": "Yoga - Level 2",
+            "zh": "瑜伽中级",
+            "en_display": "Yoga - Level 2",
+            "category": "sport",
+            "time": "14:15 – 15:30",
+            "date_range": "10月1日–12月3日",
+            "fee": "$80.60",
+            "openings": 10,
+            "full": false,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&days_of_week=0000000&activity_select_param=2&center_ids=66&date_after=2026-09-06&activity_other_category_ids=7&activity_keyword=new&viewMode=list",
+            "link_label": "去报名系统查找 ›"
+          },
+          {
+            "en": "Bone Health Fitness",
+            "zh": "骨骼健康训练",
+            "en_display": "Bone Health Fitness",
+            "category": "sport",
+            "time": "14:30 – 15:30",
+            "date_range": "10月1日–12月3日",
+            "fee": "$75.62",
+            "openings": 5,
+            "full": false,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&days_of_week=0000000&activity_select_param=2&center_ids=66&date_after=2026-09-06&activity_other_category_ids=7&activity_keyword=new&viewMode=list",
+            "link_label": "去报名系统查找 ›"
+          }
+        ],
+        "Fri": [
+          {
+            "en": "Restoring Activity & Fitness Post Hip/Knee Replacement",
+            "zh": "髋膝关节置换术后康复",
+            "en_display": "Restoring Activity & Fitness Post Hip/Knee Replacement",
+            "category": "sport",
+            "time": "13:30 – 14:30",
+            "date_range": "10月2日–12月4日",
+            "fee": "$66.38",
+            "openings": 4,
+            "full": false,
+            "is_new": true,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&days_of_week=0000000&activity_select_param=2&center_ids=66&date_after=2026-09-06&activity_other_category_ids=7&activity_keyword=new&viewMode=list",
+            "link_label": "去报名系统查找 ›"
+          },
+          {
+            "en": "Preventative Maintenance for Hips and Knees",
+            "zh": "髋膝关节保养训练",
+            "en_display": "Preventative Maintenance for Hips and Knees",
+            "category": "sport",
+            "time": "14:45 – 15:45",
+            "date_range": "10月2日–12月4日",
+            "fee": "$66.38",
+            "openings": 0,
+            "full": true,
+            "is_new": true,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "",
+            "link_label": ""
+          }
+        ],
+        "Sat": [
+          {
+            "en": "Balanced Body Workout",
+            "zh": "身体平衡训练",
+            "en_display": "Balanced Body Workout",
+            "category": "sport",
+            "time": "12:15 – 13:15",
+            "date_range": "9月26日–11月28日",
+            "fee": "$66.38",
+            "openings": 10,
+            "full": false,
+            "is_new": false,
+            "need_booking": true,
+            "badge_label": "需报名",
+            "note": "",
+            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&days_of_week=0000000&activity_select_param=2&center_ids=66&date_after=2026-09-06&activity_other_category_ids=7&activity_keyword=new&viewMode=list",
+            "link_label": "去报名系统查找 ›"
+          }
+        ],
+        "Sun": []
+      }
+    }
+  }
+}
