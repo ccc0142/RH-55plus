@@ -4,7 +4,7 @@
       "label_zh": "55+ 专属活动",
       "subtitle_zh": "需要 Adults 55+ 会员",
       "updated": "2026-09-01",
-      "period_label": "2026年9月排班（秋季课表，9月8日起生效）",
+      "period_label": "2026年09月排班",
       "membership_note": "需先办理 Adults 55+ 会员：居民 $35/年，非居民 $63/年。之后免预约活动每次 $1.30，匹克球每次 $3.15。",
       "closures": [
         "9月7日（劳动节）：全部55+免预约活动场地休息",
@@ -13,212 +13,176 @@
       "days": {
         "Sun": [
           {
-            "en": "Table Tennis",
-            "zh": "乒乓球",
-            "category": "sport",
-            "time": "13:00 – 15:00",
-            "fee": "$1.30",
-            "need_booking": false,
-            "note": "",
-            "en_display": ""
-          },
-          {
             "en": "Badminton",
             "zh": "羽毛球",
+            "en_display": "",
             "category": "sport",
             "time": "16:30 – 18:30",
             "fee": "$1.30",
             "need_booking": false,
-            "note": "",
-            "en_display": ""
+            "note": ""
+          },
+          {
+            "en": "Table Tennis",
+            "zh": "乒乓球",
+            "en_display": "",
+            "category": "sport",
+            "time": "13:00 – 15:00",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": ""
           }
         ],
         "Mon": [
           {
-            "en": "Crafts",
-            "zh": "手工艺",
-            "category": "hobby",
-            "time": "10:00 – 12:00",
-            "fee": "$1.30",
-            "need_booking": false,
-            "note": "",
-            "en_display": ""
-          },
-          {
-            "en": "Chess",
-            "zh": "象棋",
-            "category": "game",
-            "time": "13:00 – 16:00",
-            "fee": "$1.30",
-            "need_booking": false,
-            "note": "",
-            "en_display": ""
-          },
-          {
-            "en": "Table Tennis",
-            "zh": "乒乓球",
-            "category": "sport",
-            "time": "13:15 – 15:15",
-            "fee": "$1.30",
-            "need_booking": false,
-            "note": "",
-            "en_display": ""
-          },
-          {
             "en": "Badminton",
             "zh": "羽毛球",
+            "en_display": "",
             "category": "sport",
             "time": "13:30 – 15:30",
             "fee": "$1.30",
             "need_booking": false,
-            "note": "",
-            "en_display": ""
+            "note": ""
+          },
+          {
+            "en": "Chess",
+            "zh": "象棋",
+            "en_display": "",
+            "category": "game",
+            "time": "13:00 – 16:00",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "Crafts",
+            "zh": "手工艺",
+            "en_display": "",
+            "category": "hobby",
+            "time": "10:00 – 12:00",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": ""
+          },
+          {
+            "en": "Table Tennis",
+            "zh": "乒乓球",
+            "en_display": "",
+            "category": "sport",
+            "time": "13:15 – 15:15",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": ""
           }
         ],
         "Tue": [
           {
-            "en": "Pickleball",
-            "zh": "匹克球（初学者）",
-            "category": "sport",
-            "time": "13:00 – 15:00",
-            "fee": "$3.15",
-            "need_booking": true,
-            "badge_label": "需预约",
-            "note": "居民每周一早8点开放预约下周场次",
-            "en_display": "",
-            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&activity_select_param=2&activity_keyword=pickleball&viewMode=list&locale=en-US",
-            "link_label": "去预约 ›"
-          },
-          {
             "en": "Chinese Mahjong",
             "zh": "麻将",
+            "en_display": "",
             "category": "game",
             "time": "14:30 – 16:30",
             "fee": "$1.30",
             "need_booking": false,
-            "note": "",
-            "en_display": ""
+            "note": ""
+          },
+          {
+            "en": "Pickleball (Pre-registration required)",
+            "zh": "匹克球",
+            "en_display": "",
+            "category": "sport",
+            "time": "13:00 – 15:00",
+            "fee": "$3.15",
+            "need_booking": true,
+            "note": "需提前预约"
           }
         ],
         "Wed": [
           {
-            "en": "Table Tennis",
-            "zh": "乒乓球",
-            "category": "sport",
-            "time": "08:30 – 10:00",
-            "fee": "$1.30",
-            "need_booking": false,
-            "note": "",
-            "en_display": ""
-          },
-          {
             "en": "Euchre",
             "zh": "尤克纸牌",
+            "en_display": "",
             "category": "game",
             "time": "10:00 – 13:00",
             "fee": "$1.30",
             "need_booking": false,
-            "note": "",
-            "en_display": "Euchre"
+            "note": ""
           },
           {
             "en": "Table Tennis",
             "zh": "乒乓球",
+            "en_display": "",
             "category": "sport",
-            "time": "10:30 – 12:30",
+            "time": "8:30 – 10:00 a.m. 10:30 a.m. – 12:30 p.m.",
             "fee": "$1.30",
             "need_booking": false,
-            "note": "",
-            "en_display": ""
+            "note": ""
           }
         ],
         "Thu": [
           {
-            "en": "Table Tennis",
-            "zh": "乒乓球",
-            "category": "sport",
-            "time": "08:30 – 10:30",
-            "fee": "$1.30",
-            "need_booking": false,
-            "note": "",
-            "en_display": ""
-          },
-          {
-            "en": "Table Tennis",
-            "zh": "乒乓球",
-            "category": "sport",
-            "time": "11:00 – 13:00",
-            "fee": "$1.30",
-            "need_booking": false,
-            "note": "",
-            "en_display": ""
-          },
-          {
             "en": "Knitting",
             "zh": "编织",
+            "en_display": "",
             "category": "hobby",
             "time": "13:00 – 16:00",
             "fee": "$1.30",
             "need_booking": false,
-            "note": "",
-            "en_display": ""
+            "note": ""
+          },
+          {
+            "en": "Table Tennis",
+            "zh": "乒乓球",
+            "en_display": "",
+            "category": "sport",
+            "time": "8:30 – 10:30 a.m. 11:00 a.m. – 1:00 p.m.",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": ""
           }
         ],
         "Fri": [
           {
             "en": "Badminton",
             "zh": "羽毛球",
+            "en_display": "",
             "category": "sport",
             "time": "10:30 – 12:30",
             "fee": "$1.30",
             "need_booking": false,
-            "note": "",
-            "en_display": ""
+            "note": ""
           },
           {
-            "en": "Pickleball",
-            "zh": "匹克球（初学者）",
+            "en": "Pickleball (Pre-registration required)",
+            "zh": "匹克球",
+            "en_display": "",
             "category": "sport",
             "time": "13:00 – 15:00",
             "fee": "$3.15",
             "need_booking": true,
-            "badge_label": "需预约",
-            "note": "居民每周一早8点开放预约下周场次",
+            "note": "需提前预约"
+          },
+          {
+            "en": "Table Tennis",
+            "zh": "乒乓球",
             "en_display": "",
-            "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&activity_select_param=2&activity_keyword=pickleball&viewMode=list&locale=en-US",
-            "link_label": "去预约 ›"
+            "category": "sport",
+            "time": "9:00 – 11:00 a.m. 7:00 – 9:00 p.m.",
+            "fee": "$1.30",
+            "need_booking": false,
+            "note": ""
           }
         ],
         "Sat": [
           {
-            "en": "Table Tennis",
-            "zh": "乒乓球",
-            "category": "sport",
-            "time": "09:00 – 11:00",
-            "fee": "$1.30",
-            "need_booking": false,
-            "note": "",
-            "en_display": ""
-          },
-          {
             "en": "Badminton",
             "zh": "羽毛球",
+            "en_display": "",
             "category": "sport",
             "time": "17:15 – 19:15",
             "fee": "$1.30",
             "need_booking": false,
-            "note": "",
-            "en_display": ""
-          },
-          {
-            "en": "Table Tennis",
-            "zh": "乒乓球",
-            "category": "sport",
-            "time": "19:00 – 21:00",
-            "fee": "$1.30",
-            "need_booking": false,
-            "note": "",
-            "en_display": ""
+            "note": ""
           }
         ]
       }
