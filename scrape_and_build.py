@@ -195,7 +195,7 @@ def find_current_month_table(section_html: str) -> pd.DataFrame:
     if chosen is None:
         chosen = tables[-1]  # fall back to last table = most recently listed month
 
-    dfs = pd.read_html(StringIO(str(chosen)))
+    dfs = pd.read_html(StringIO(str(chosen)), header=0)
     if not dfs:
         raise ValueError("pandas could not parse the chosen table")
     return dfs[0]
