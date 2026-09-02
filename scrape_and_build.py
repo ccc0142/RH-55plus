@@ -201,6 +201,32 @@ def find_current_month_table(section_html: str) -> pd.DataFrame:
     return dfs[0]
 
 
+# Manually-verified extras for specific activities that the scraped table
+# can't tell us on its own (a registration link, a reservation-window note).
+# Baked in here (rather than only in data.json) so an automated re-run can
+# never silently drop them.
+ACTIVITY_EXTRAS = {
+    "Pickleball": {
+        "note": "居民每周一早8点开放预约下周场次",
+        "link": "https://anc.ca.apm.activecommunities.com/richmondhill/activity/search?onlineSiteId=0&activity_select_param=2&activity_keyword=pickleball&viewMode=list&locale=en-US",
+        "link_label": "去预约 ›",
+        "badge_label": "需预约",
+    },
+}
+
+TIME_RANGE_RE = re.compile(
+    r"\d{1,2}:\d{2}\s*(?:a\.m\.|p\.m\.)?\s*[–-]\s*\d{1,2}:\d{2}\s*(?:a\.m\.|p\.m\.)?"
+)
+
+
+def split_time_ranges(cell: str):
+    """A day's cell can contain more than one time range (e.g. two Table
+    Tennis sessions the same day). Split on that instead of treating the
+    whole cell as a single (garbled) time string."""
+    matches = TIME_RANGE_RE.findall(cell)
+    return matches if matches else [cell]
+
+
 def table_to_days(df: pd.DataFrame):
     """Convert the raw dataframe (rows = activities, columns = days) into the
     {day_code: [ {en, zh, category, time, note}, ... ]} structure."""
@@ -225,20 +251,28 @@ def table_to_days(df: pd.DataFrame):
         base_name = re.sub(r"\s*\([^)]*\)", "", activity_raw).strip()
         fee = FEE_OVERRIDES.get(base_name, DEFAULT_DROP_IN_FEE)
         need_booking = "预约" in note or base_name == "Pickleball"
+        extras = ACTIVITY_EXTRAS.get(base_name, {})
         for col, day_code in col_to_day.items():
             cell = str(row[col]).strip()
             if not cell or cell.lower() == "nan":
                 continue
-            days[day_code].append({
-                "en": activity_raw,
-                "zh": zh,
-                "en_display": en_display,
-                "category": category,
-                "time": normalize_time(cell),
-                "fee": fee,
-                "need_booking": need_booking,
-                "note": note,
-            })
+            for time_piece in split_time_ranges(cell):
+                item = {
+                    "en": activity_raw,
+                    "zh": zh,
+                    "en_display": en_display,
+                    "category": category,
+                    "time": normalize_time(time_piece),
+                    "fee": fee,
+                    "need_booking": need_booking,
+                    "note": extras.get("note", note),
+                }
+                if "link" in extras:
+                    item["link"] = extras["link"]
+                    item["link_label"] = extras.get("link_label", "去预约 ›")
+                if "badge_label" in extras:
+                    item["badge_label"] = extras["badge_label"]
+                days[day_code].append(item)
 
     for day_code in days:
         days[day_code].sort(key=lambda item: parse_time_sort_key(item["time"]))
