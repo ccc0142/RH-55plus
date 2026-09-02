@@ -2,8 +2,9 @@ name: Update Oak Ridges 55+ schedule
 
 on:
   schedule:
-    # Every Monday 13:00 UTC (~9am Toronto time; shifts by 1hr with DST, that's fine)
-    - cron: "0 13 * * 1"
+    # 13:00 UTC on the 26th of every month (~5 days before next month starts;
+    # the site tends to publish next month's schedule a few days early)
+    - cron: "0 13 26 * *"
   workflow_dispatch: {}   # lets you click "Run workflow" manually to test
 
 permissions:
