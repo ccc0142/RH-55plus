@@ -77,8 +77,12 @@ DAY_HEADER_MAP = {
 def translate(activity_raw: str):
     """Match the scraped activity label against TRANSLATIONS, stripping any
     parenthetical note like '(pre-registration required)' first, and pull
-    out a note (e.g. booking requirement, skill level) separately."""
+    out a note (e.g. booking requirement) separately. A '(Beginner)' skill
+    tag is folded into the Chinese name itself (not just the note) so it
+    survives even for activities like Pickleball whose note gets replaced
+    by ACTIVITY_EXTRAS."""
     note = ""
+    is_beginner = False
     base = activity_raw
     m = re.search(r"\(([^)]+)\)", activity_raw)
     if m:
@@ -87,7 +91,8 @@ def translate(activity_raw: str):
         if "pre-registration" in note_raw.lower() or "preregist" in note_raw.lower():
             note = "需提前预约"
         elif "beginner" in note_raw.lower():
-            note = (note + "，初学者" if note else "初学者")
+            is_beginner = True
+            note = "初学者"
         else:
             note = note_raw
 
@@ -96,6 +101,8 @@ def translate(activity_raw: str):
         base = re.sub(r"\*ALL PREREGISTERED", "", base, flags=re.I).strip()
 
     zh, en_display, category = TRANSLATIONS.get(base.strip(), (base.strip(), "", "hobby"))
+    if is_beginner:
+        zh = f"{zh}（初学者）"
     return zh, en_display, category, note
 
 
@@ -230,11 +237,21 @@ TIME_RANGE_RE = re.compile(
 )
 
 
+def pad_bare_hours(t: str) -> str:
+    """Insert ':00' after a bare hour (no colon) that precedes a dash or
+    am/pm marker, e.g. '8:30 – 10 a.m.' -> '8:30 – 10:00 a.m.'. Doing this
+    before splitting/matching means every time token is guaranteed to have
+    minutes, so downstream regexes don't have to special-case bare hours."""
+    return re.sub(r"(?<!:)\b(\d{1,2})\b(?=\s*(?:[–-]|a\.m\.|p\.m\.))", r"\1:00", t)
+
+
 def split_time_ranges(cell: str):
     """A day's cell can contain more than one time range (e.g. two Table
-    Tennis sessions the same day). Split on that instead of treating the
-    whole cell as a single (garbled) time string."""
-    matches = TIME_RANGE_RE.findall(cell)
+    Tennis sessions the same day), and either range may use a bare hour
+    with no minutes ('10 a.m.'). Pad bare hours first, then split on
+    however many full HH:MM–HH:MM ranges are present."""
+    padded = pad_bare_hours(cell)
+    matches = TIME_RANGE_RE.findall(padded)
     return matches if matches else [cell]
 
 

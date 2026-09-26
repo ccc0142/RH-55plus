@@ -454,18 +454,40 @@ function render(){
     feesCard.style.display = 'none';
   }
 
-  // closures — only show ones that are today or in the future; a plain
-  // string (no date) is treated as always-relevant for backward compatibility
+  // closures — only show ones today or in the future, then group by
+  // cause (e.g. all holiday closures together) into one line each
   const closuresEl = document.getElementById('closures');
   closuresEl.innerHTML = '';
   const todayStr = new Date().toISOString().slice(0, 10);
-  const activeClosures = (cat.closures || [])
-    .filter(c => typeof c === 'string' || !c.date || c.date >= todayStr)
-    .map(c => typeof c === 'string' ? c : c.text);
-  if(activeClosures.length){
+  const GROUP_TITLES = { holiday: '节假日暂停', cancel: '临时取消' };
+
+  const rawClosures = cat.closures || [];
+  const active = rawClosures.filter(c => typeof c === 'string' || !c.date || c.date >= todayStr);
+
+  const lines = [];
+  const seenGroups = {};
+  active.forEach(c => {
+    if (typeof c === 'string') { lines.push(c); return; }
+    const text = c.label || c.text;
+    if (c.group) {
+      if (!seenGroups[c.group]) { seenGroups[c.group] = []; lines.push(seenGroups[c.group]); }
+      seenGroups[c.group].push(text);
+    } else {
+      lines.push([text]);
+    }
+  });
+  const renderedLines = lines.map(entry => {
+    if (typeof entry === 'string') return entry;
+    // find which group this array belongs to, if any, for a title prefix
+    const groupKey = Object.keys(seenGroups).find(k => seenGroups[k] === entry);
+    const title = groupKey ? (GROUP_TITLES[groupKey] || groupKey) + '：' : '';
+    return title + entry.join('、');
+  });
+
+  if(renderedLines.length){
     const box = document.createElement('div');
     box.className = 'closure-box';
-    box.innerHTML = '⚠ ' + activeClosures.join('<br>⚠ ');
+    box.innerHTML = '⚠ ' + renderedLines.join('<br>⚠ ');
     closuresEl.appendChild(box);
   }
 
