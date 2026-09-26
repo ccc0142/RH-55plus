@@ -454,13 +454,18 @@ function render(){
     feesCard.style.display = 'none';
   }
 
-  // closures
+  // closures — only show ones that are today or in the future; a plain
+  // string (no date) is treated as always-relevant for backward compatibility
   const closuresEl = document.getElementById('closures');
   closuresEl.innerHTML = '';
-  if(cat.closures && cat.closures.length){
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const activeClosures = (cat.closures || [])
+    .filter(c => typeof c === 'string' || !c.date || c.date >= todayStr)
+    .map(c => typeof c === 'string' ? c : c.text);
+  if(activeClosures.length){
     const box = document.createElement('div');
     box.className = 'closure-box';
-    box.innerHTML = '⚠ ' + cat.closures.join('<br>⚠ ');
+    box.innerHTML = '⚠ ' + activeClosures.join('<br>⚠ ');
     closuresEl.appendChild(box);
   }
 
