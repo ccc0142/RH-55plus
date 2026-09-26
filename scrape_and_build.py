@@ -21,9 +21,10 @@ Design notes for future-you (or whoever maintains this):
 """
 
 import json
+import os
 import re
 import sys
-from datetime import date
+from datetime import date, timedelta
 
 import requests
 from bs4 import BeautifulSoup
@@ -165,40 +166,50 @@ def slice_section(html: str, heading_text: str) -> str:
     return "".join(chunk_parts)
 
 
-def find_current_month_table(section_html: str) -> pd.DataFrame:
+def find_current_month_table(section_html: str) -> "tuple[pd.DataFrame, str]":
     """The page lists one table per month (e.g. captioned 'July: ...',
-    'August: ...'). Pick the table whose nearby caption text contains the
-    current month name; fall back to the last table in the section if that
-    fails (usually the most recent one)."""
-    month_name = date.today().strftime("%B")  # e.g. "August"
+    'August: ...'). This job runs a few days before month-end specifically to
+    catch next month's table once the city publishes it — so prefer a table
+    captioned with NEXT month's name; fall back to the current month's table
+    if next month isn't up yet; fall back to the last table in the section as
+    a last resort. Returns (dataframe, month_label) so the caller can record
+    which month's data was actually used.
+    """
+    today = date.today()
+    next_month_date = (today.replace(day=28) + timedelta(days=4)).replace(day=1)
+    current_month_name = today.strftime("%B")
+    next_month_name = next_month_date.strftime("%B")
+
     soup = BeautifulSoup(section_html, "lxml")
     tables = soup.find_all("table")
     if not tables:
         raise ValueError("No tables found in this section")
 
-    chosen = None
-    for t in tables:
-        # look at text just before this table (caption / preceding siblings)
-        preceding_text = ""
-        prev = t.find_previous(string=True)
-        hop = 0
+    def preceding_text_for(t):
+        text = ""
         node = t
-        while node is not None and hop < 6:
+        for _ in range(6):
             node = node.find_previous(string=True)
-            if node:
-                preceding_text += " " + str(node)
-            hop += 1
-        if month_name.lower() in preceding_text.lower():
-            chosen = t
-            break
+            if node is None:
+                break
+            text += " " + str(node)
+        return text.lower()
 
-    if chosen is None:
-        chosen = tables[-1]  # fall back to last table = most recently listed month
+    table_texts = [(t, preceding_text_for(t)) for t in tables]
 
-    dfs = pd.read_html(StringIO(str(chosen)), header=0)
+    for name, label in ((next_month_name, next_month_date.strftime("%Y年%m月")),
+                         (current_month_name, today.strftime("%Y年%m月"))):
+        for t, text in table_texts:
+            if name.lower() in text:
+                dfs = pd.read_html(StringIO(str(t)), header=0)
+                if dfs:
+                    return dfs[0], label
+
+    # last resort: most recently listed table, label uncertain
+    dfs = pd.read_html(StringIO(str(tables[-1])), header=0)
     if not dfs:
         raise ValueError("pandas could not parse the chosen table")
-    return dfs[0]
+    return dfs[0], "（月份未确认，抓到的是页面上最后一张表）"
 
 
 # Manually-verified extras for specific activities that the scraped table
@@ -280,11 +291,25 @@ def table_to_days(df: pd.DataFrame):
     return days
 
 
+def is_last_saturday_of_month(d: date) -> bool:
+    """True if d is a Saturday and the following week rolls into next month."""
+    return d.weekday() == 5 and (d + timedelta(days=7)).month != d.month
+
+
 def main():
+    today = date.today()
+    force = os.environ.get("FORCE_RUN", "").lower() == "true"
+    if not force and not is_last_saturday_of_month(today):
+        print(
+            f"[scrape_and_build] {today.isoformat()} is not the last Saturday of "
+            "the month — skipping (this job is meant to run only then)."
+        )
+        return
+
     try:
         html = fetch_html(URL)
         section = slice_section(html, CENTRE_HEADING_TEXT)
-        df = find_current_month_table(section)
+        df, month_label = find_current_month_table(section)
         days = table_to_days(df)
     except Exception as exc:  # noqa: BLE001 - deliberately broad: see module docstring
         print(f"[scrape_and_build] FAILED to update schedule: {exc}", file=sys.stderr)
@@ -312,7 +337,7 @@ def main():
         "label_zh": old_55plus.get("label_zh", "55+ 专属活动"),
         "subtitle_zh": old_55plus.get("subtitle_zh", "需要 Adults 55+ 会员"),
         "updated": date.today().isoformat(),
-        "period_label": f"{date.today().strftime('%Y年%m月')}排班",
+        "period_label": f"{month_label}排班",
         "membership_note": old_55plus.get("membership_note", ""),
         "closures": old_55plus.get("closures", []),  # closures aren't auto-parsed yet; edit by hand if needed
         "days": days,
