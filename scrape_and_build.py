@@ -173,6 +173,79 @@ def slice_section(html: str, heading_text: str) -> str:
     return "".join(chunk_parts)
 
 
+# English holiday names as they appear in the page's "Closure:" lines,
+# mapped to Chinese. Anything not in here falls back to showing the
+# original English name rather than being silently dropped.
+HOLIDAY_NAMES = {
+    "labour day": "劳动节",
+    "thanksgiving": "感恩节",
+    "civic holiday": "公众假期",
+    "christmas": "圣诞节",
+    "christmas day": "圣诞节",
+    "boxing day": "节礼日",
+    "new year's day": "元旦",
+    "family day": "家庭日",
+    "victoria day": "维多利亚日",
+    "canada day": "加拿大日",
+    "good friday": "耶稣受难日",
+    "easter monday": "复活节星期一",
+    "remembrance day": "国殇日",
+}
+
+MONTH_NAMES = {
+    "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
+    "july": 7, "august": 8, "september": 9, "october": 10, "november": 11,
+    "december": 12,
+}
+
+
+def parse_closures_and_cancellations(section_html: str, year: int):
+    """Best-effort parse of the 'Closure: ...' / 'Cancellation: ...' text
+    that follows this centre's table into structured {date, group, label}
+    entries. Any date or activity name this can't confidently translate is
+    still included (with an English fallback) rather than dropped, since a
+    slightly-rough label is better than a silently missing notice — but if
+    the whole block isn't found at all, it just returns an empty list and
+    leaves whatever closures were already in data.json untouched by the
+    caller.
+    """
+    soup = BeautifulSoup(section_html, "lxml")
+    text = soup.get_text(" ", strip=True)
+
+    def activity_zh(name: str) -> str:
+        zh, _, _ = TRANSLATIONS.get(name.strip(), (name.strip(), "", ""))
+        return zh
+
+    def entries_from(chunk: str, group: str):
+        out = []
+        for m in re.finditer(
+            r"(January|February|March|April|May|June|July|August|September|"
+            r"October|November|December)\s+(\d{1,2})\s*(?:\(([^)]*)\))?",
+            chunk, re.I,
+        ):
+            month_num = MONTH_NAMES[m.group(1).lower()]
+            day = int(m.group(2))
+            iso = f"{year:04d}-{month_num:02d}-{day:02d}"
+            inside = m.group(3)
+            if group == "holiday":
+                name = (inside or "").strip().lower()
+                label = f"{month_num}月{day}日（{HOLIDAY_NAMES.get(name, inside or '')}）"
+            else:
+                acts = [activity_zh(a) for a in (inside or "").split(",") if a.strip()]
+                label = f"{month_num}月{day}日 " + "、".join(acts) if acts else f"{month_num}月{day}日"
+            out.append({"date": iso, "group": group, "label": label})
+        return out
+
+    entries = []
+    m = re.search(r"Closure:\s*(.*?)(?=Cancellation:|$)", text, re.I)
+    if m:
+        entries += entries_from(m.group(1), "holiday")
+    m = re.search(r"Cancellation:\s*(.*?)(?=Closure:|$)", text, re.I)
+    if m:
+        entries += entries_from(m.group(1), "cancel")
+    return entries
+
+
 def find_current_month_table(section_html: str) -> "tuple[pd.DataFrame, str]":
     """The page lists one table per month (e.g. captioned 'July: ...',
     'August: ...'). This job runs a few days before month-end specifically to
@@ -313,6 +386,104 @@ def is_last_saturday_of_month(d: date) -> bool:
     return d.weekday() == 5 and (d + timedelta(days=7)).month != d.month
 
 
+# Common Canadian statutory holiday names as they tend to appear on the
+# page, translated for display. Add to this if a new one shows up.
+HOLIDAY_NAMES = {
+    "labour day": "劳动节",
+    "thanksgiving": "感恩节",
+    "civic holiday": "公众假期",
+    "family day": "家庭日",
+    "victoria day": "维多利亚日",
+    "canada day": "加拿大日",
+    "christmas": "圣诞节",
+    "boxing day": "节礼日",
+    "new year's day": "元旦",
+    "good friday": "耶稣受难日",
+    "easter monday": "复活节星期一",
+    "remembrance day": "国殇日",
+}
+
+MONTH_NUM = {
+    "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
+    "july": 7, "august": 8, "september": 9, "october": 10, "november": 11,
+    "december": 12,
+}
+
+
+def translate_activity_list(names_en):
+    """Turn a list of raw English activity names into their Chinese labels
+    (falling back to the English name for anything not in TRANSLATIONS)."""
+    out = []
+    for n in names_en:
+        base = re.sub(r"\s*\([^)]*\)", "", n).strip()
+        zh, _en_display, _category = TRANSLATIONS.get(base, (base, "", "hobby"))
+        out.append(zh)
+    return out
+
+
+def parse_closures_and_cancellations(section_html: str, reference_date: date):
+    """Best-effort extraction of the 'Closure:' / 'Cancellation:' notes that
+    sit below the schedule table for this centre. Very loosely structured
+    text on the site, so this only returns entries it's confident about —
+    if nothing matches, the caller keeps whatever was there before rather
+    than wiping it out."""
+    soup = BeautifulSoup(section_html, "lxml")
+    text = soup.get_text(" ", strip=True)
+
+    def resolve_date(month_name, day):
+        month_name = month_name.lower()
+        if month_name not in MONTH_NUM:
+            return None
+        month_num = MONTH_NUM[month_name]
+        # the schedule can span a year boundary (e.g. scraped in Nov for
+        # December, or in Dec for January) — pick the year that keeps this
+        # date within ~2 months of the reference date.
+        year = reference_date.year
+        candidate = date(year, month_num, int(day))
+        if (candidate - reference_date).days < -60:
+            candidate = date(year + 1, month_num, int(day))
+        elif (candidate - reference_date).days > 60:
+            candidate = date(year - 1, month_num, int(day))
+        return candidate
+
+    results = []
+
+    for m in re.finditer(
+        r"Closure:?\s*([A-Za-z]+)\s+(\d{1,2})\s*\(([^)]+)\)", text, re.IGNORECASE
+    ):
+        month_name, day, desc = m.groups()
+        d = resolve_date(month_name, day)
+        if not d:
+            continue
+        desc_zh = HOLIDAY_NAMES.get(desc.strip().lower(), desc.strip())
+        results.append({
+            "date": d.isoformat(),
+            "group": "holiday",
+            "label": f"{d.month}月{d.day}日（{desc_zh}）",
+        })
+
+    cancel_match = re.search(r"Cancellation:?\s*(.+?)(?:$)", text, re.IGNORECASE)
+    if cancel_match:
+        by_date = {}
+        for m2 in re.finditer(
+            r"([A-Za-z]+)\s+(\d{1,2})\s*\(([^)]+)\)", cancel_match.group(1)
+        ):
+            month_name, day, activities = m2.groups()
+            d = resolve_date(month_name, day)
+            if not d:
+                continue
+            names_zh = translate_activity_list([a.strip() for a in activities.split(",")])
+            by_date.setdefault(d.isoformat(), (d, []))[1].extend(names_zh)
+        for iso, (d, names) in by_date.items():
+            results.append({
+                "date": iso,
+                "group": "cancel",
+                "label": f"{d.month}月{d.day}日 " + "、".join(dict.fromkeys(names)),
+            })
+
+    return results
+
+
 def main():
     today = date.today()
     force = os.environ.get("FORCE_RUN", "").lower() == "true"
@@ -342,6 +513,19 @@ def main():
     existing.setdefault("categories", {})
     old_55plus = existing["categories"].get("55plus", {})
 
+    # Closures/cancellations are messier free text (not a table), so this is
+    # best-effort: only replace the old list if parsing actually found
+    # something. A parsing failure or an empty result keeps whatever was
+    # there before rather than silently wiping out real notices.
+    try:
+        parsed_closures = parse_closures_and_cancellations(section, date.today())
+    except Exception as exc:  # noqa: BLE001
+        print(f"[scrape_and_build] Could not parse closures/cancellations: {exc}", file=sys.stderr)
+        parsed_closures = []
+    closures = parsed_closures if parsed_closures else old_55plus.get("closures", [])
+    if not parsed_closures:
+        print("[scrape_and_build] No closures/cancellations found — keeping previous list.")
+
     # NOTE: only the "55plus" category is auto-scraped (the official 55+ page
     # has one clean table we can parse reliably). The "adult" category (the
     # all-ages fitness classes) comes from a much messier multi-season,
@@ -356,7 +540,7 @@ def main():
         "updated": date.today().isoformat(),
         "period_label": f"{month_label}排班",
         "membership_note": old_55plus.get("membership_note", ""),
-        "closures": old_55plus.get("closures", []),  # closures aren't auto-parsed yet; edit by hand if needed
+        "closures": closures,
         "days": days,
     }
 
